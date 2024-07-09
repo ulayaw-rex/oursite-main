@@ -1,0 +1,92 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+List of Student
+{% endblock title %}
+
+{% block content %}
+
+
+{% include "include/messages.html" %}
+
+<style>
+    body {
+        background-color: #0c1a3e; /* Dark blue background for the entire page */
+        color: #ffffff; 
+    }
+
+    .table-container {
+        background-color: #05073e; /* White background color for the table container */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #1e3799; /* Darker blue on hover for table rows */
+        color: #ffffff; /* White text color on hover */
+    }
+
+    tr{
+        color: #ffffff
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>List of Students</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="/" class="btn btn-outline-light me-2">Log out</a>
+            <a href="/user/create" class="btn btn-info">Add Student</a>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-responsive rounded shadow">
+            <table class="table table-bordered table-hover">
+                <thead class="bg-info text-white">
+                    <tr>
+                        <th class="align-middle">Student ID</th>
+                        <th class="align-middle">Name</th>
+                        <th class="align-middle">Gender</th>
+                        <th class="align-middle">Math</th>
+                        <th class="align-middle">Science</th>
+                        <th class="align-middle">English</th>
+                        <th class="align-middle">Filipino</th>
+                        <th class="align-middle">History</th>
+                        <th class="align-middle">Homeroom</th>
+                        <th class="align-middle">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.student_id }}</td>
+                        <td>{{ user.first_name }} {{ user.middle_name|default:"" }} {{ user.last_name }}</td>
+                        <td>{{ user.gender }}</td>
+                        <td>{{ user.math }}</td>
+                        <td>{{ user.science }}</td>
+                        <td>{{ user.english }}</td>
+                        <td>{{ user.filipino }}</td>
+                        <td>{{ user.history }}</td>
+                        <td>{{ user.homeroom }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="/user/show/{{ user.student_id }}" class="btn btn-sm btn-info">View</a>
+                                <a href="/user/edit/{{ user.student_id }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="/user/delete/{{ user.student_id }}" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

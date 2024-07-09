@@ -1,0 +1,21 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+Delete User
+{% endblock title %}
+
+{% block content %}
+
+<h1>Delete User</h1>
+<p>Are you sure do you want to delete this User ?</p>
+
+<form action="/user/destroy/{{user.student_id}}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger float-end">Yes</button>
+    <a href="/user" class="btn btn-secondary float-end">No</a>
+</form>
+
+{% endblock content %}
+
+
+

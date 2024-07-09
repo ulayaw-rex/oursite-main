@@ -1,0 +1,99 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+Add Student
+{% endblock title %}
+
+{% block content %}
+
+{% include "include/messages.html" %}
+
+<style>
+    body {
+        background-color: #0f3057; 
+        color: #ffffff; 
+    }
+    .form-container {
+        background-color: #1b4b72; 
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+    .form-container label {
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container">
+                {% include "include/messages.html" %}
+                
+                <form action="/user/store" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" class="form-control" id="middle_name" name="middle_name"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age">Age</label>
+                        <input type="text" class="form-control" id="age" name="age"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="birth_date">Birth Date</label>
+                        <input type="date" class="form-control" id="birth_date" name="birth_date"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender_id">Gender</label>
+                        <select name="gender_id" id="gender_id" class="form-select">
+                            <option value="">N/A</option>
+                            {% for gender in genders %}
+                                <option value="{{ gender.gender_id }}">{{ gender.gender }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="math">Math</label>
+                        <input type="text" class="form-control" id="math" name="math"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="science">Science</label>
+                        <input type="text" class="form-control" id="science" name="science"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="english">English</label>
+                        <input type="text" class="form-control" id="english" name="english"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="filipino">Filipino</label>
+                        <input type="text" class="form-control" id="filipino" name="filipino"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="history">History</label>
+                        <input type="text" class="form-control" id="history" name="history"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="homeroom">Homeroom</label>
+                        <input type="text" class="form-control" id="homeroom" name="homeroom"/>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success float-end col-12 col-md-4">Save Student</button>
+                        <a href="/user" class="btn btn-secondary float-end col-12 col-md-3 me-1">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

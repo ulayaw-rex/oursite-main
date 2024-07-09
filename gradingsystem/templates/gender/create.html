@@ -1,0 +1,51 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+Create Gender 
+{% endblock title %}
+
+{% block content %}
+
+<style>
+    body {
+        background-color: #0f3057; /* dark blue background */
+        color: #ffffff; /* white text */
+    }
+    .form-container {
+        background-color: #1b4b72; /* slightly lighter blue for form container */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+    .form-container label {
+        font-weight: bold;
+    }
+    .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container">
+                <form action="/genders_store" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="gender">Gender</label>
+                        <input type="text" class="form-control" id="gender" name="gender"/>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success btn-sm float-end col-12 col-md-4">Save Gender</button>
+                        <a href="/genders" class="btn btn-secondary btn-sm float-end col-12 col-md-3 me-1">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
